@@ -16,9 +16,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-py3.6
+          key: ${{ runner.os }}-pip-1
           restore-keys: |
-            ${{ runner.os }}-pip-py3.6
+            ${{ runner.os }}-pip-1
       - run: pip install pandas==1.1.4
       - run: pip install pandas==1.1.3
       - run: pip install pandas==1.1.2
