@@ -16,11 +16,11 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip
+          key: ${{ runner.os }}-pip-py3.6
           restore-keys: |
-            ${{ runner.os }}-pip
+            ${{ runner.os }}-pip-py3.6
       - name: Install Python library
-        run: pip install pandas
+        run: pip install pandas==1.1.4
   Job2:
     needs: Job1
     runs-on: ubuntu-latest
@@ -33,7 +33,9 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip
+          key: ${{ runner.os }}-pip-py3.6
           restore-keys: |
-            ${{ runner.os }}-pip
+            ${{ runner.os }}-pip-py3.6
+      - name: Install Python library
+        run: pip install pandas==1.1.4
       - run: pip freeze
