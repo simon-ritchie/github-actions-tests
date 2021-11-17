@@ -18,9 +18,10 @@ jobs:
       - run: python -c "import site; print(f'site_package_path={site.getsitepackages()[0]}')" >> $GITHUB_ENV
       - run: echo ${{ env.site_package_path }}
       - uses: actions/cache@v2
+        id: pip_cache
         with:
           path: ${{ env.site_package_path }}
           key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-2
-      - if: steps.cache.outputs.cache-hit != 'true'
+      - if: steps.pip_cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
       - run: pip freeze
