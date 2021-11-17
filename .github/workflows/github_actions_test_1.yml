@@ -19,8 +19,11 @@ jobs:
       #     key: ${{ runner.os }}-pip-py3.6
       #     restore-keys: |
       #       ${{ runner.os }}-pip-py3.6
-      - name: Install Python library
-        run: pip install pandas==1.1.4
+      - run: pip install pandas==1.1.4
+      - run: pip install pandas==1.1.3
+      - run: pip install pandas==1.1.2
+      - run: pip install pandas==1.1.1
+
   # Job2:
   #   needs: Job1
   #   runs-on: ubuntu-latest
