@@ -1,0 +1,23 @@
+name: Github Actions test 1
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Job1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - run: sudo apt install build-essential
+      - name: Set Python version
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip
+          restore-keys: |
+            ${{ runner.os }}-pip
+      - name: Install Python library
+        run: pip install pandas
