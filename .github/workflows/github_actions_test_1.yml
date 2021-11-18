@@ -52,4 +52,4 @@ jobs:
         with:
           path: /usr/local/bin/flake8
           key: ${{ runner.os }}-flake8_cache-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}
-      - run: flake8 --help
+      - run: /usr/local/bin/flake8 --help
