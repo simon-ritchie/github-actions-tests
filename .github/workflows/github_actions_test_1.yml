@@ -24,4 +24,14 @@ jobs:
           key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-2
       - if: steps.pip_cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
-      - run: pip freeze
+  Job2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - run: echo "Hello!"
+  Job3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: [Job1, Job2]
+    steps:
+      - run: echo "Hello!"
