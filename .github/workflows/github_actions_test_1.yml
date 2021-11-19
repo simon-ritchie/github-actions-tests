@@ -21,13 +21,13 @@ jobs:
         id: pip_cache
         with:
           path: ${{ env.site_package_path }}
-          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-10
+          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-11
       - if: steps.pip_cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
-      - run: echo which_flake8=`which flake8` >> $GITHUB_ENV
-      - run: echo ${{ env.which_flake8 }}
-      # - run: which -a mypy
-      # - run: which -a numdoclint
+      # - run: echo py_package_bin_path=`which flake8` >> $GITHUB_ENV
+      # - run: echo ${{ env.which_flake8 }}
+      - run: which -a mypy
+      - run: which -a numdoclint
       - uses: actions/cache@v2
         id: flake8_bin_cache
         with:
@@ -49,7 +49,7 @@ jobs:
         id: pip_cache
         with:
           path: ${{ env.site_package_path }}
-          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-10
+          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-11
       - uses: actions/cache@v2
         id: flake8_bin_cache
         with:
