@@ -21,7 +21,7 @@ jobs:
         id: pip_cache
         with:
           path: ${{ env.site_package_path }}
-          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-9
+          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-10
       - if: steps.pip_cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
       - run: echo which_flake8=`which flake8` >> $GITHUB_ENV
@@ -32,7 +32,7 @@ jobs:
         id: flake8_bin_cache
         with:
           path: ${{ env.which_flake8 }}
-          key: ${{ runner.os }}-bin_cache-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-bin_cache-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-1
   Job2:
     needs: Job1
     runs-on: ubuntu-latest
@@ -49,10 +49,10 @@ jobs:
         id: pip_cache
         with:
           path: ${{ env.site_package_path }}
-          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-9
+          key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-10
       - uses: actions/cache@v2
         id: flake8_bin_cache
         with:
           path: /usr/local/bin/flake8
-          key: ${{ runner.os }}-bin_cache-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}
+          key: ${{ runner.os }}-bin_cache-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-1
       - run: /usr/local/bin/flake8 --help
