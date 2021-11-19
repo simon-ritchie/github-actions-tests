@@ -24,9 +24,10 @@ jobs:
           key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-7
       - if: steps.pip_cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
-      - run: which -a flake8
-      - run: which -a mypy
-      - run: which -a numdoclint
+      - run: echo which_flake8=`which flake8` >> $GITHUB_ENV
+      - run: echo ${{ env.which_flake8 }}
+      # - run: which -a mypy
+      # - run: which -a numdoclint
       - uses: actions/cache@v2
         id: bin_cache
         with:
