@@ -24,8 +24,6 @@ jobs:
           key: ${{ runner.os }}-pip-${{ env.site_package_path }}-${{ hashFiles('**/requirements.txt') }}-12
       - if: steps.pip_cache.outputs.cache-hit != 'true'
         run: pip install -r requirements.txt
-      - run: which -a mypy
-      - run: which -a numdoclint
       - uses: actions/cache@v2
         id: bin_cache
         with:
